@@ -1,0 +1,83 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Satis.master.cs" Inherits="TeknoSatis.Satis" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>TeknoSatış masterpage</title>
+    <meta name="description" content="Her marka akıllı telefon elektronik satış sitesi" />
+    <meta name="keywords" content="cep telefonu, akıllı telefon, Samsung, Apple, Iphone, LG, Vestel, Android Telefonlar, IOS Telefonlar" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Content/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #header {
+            height: 150px;
+            background-color: lightblue;
+            color: white;
+        }
+
+        #slogan {
+            padding-top: 43px;
+        }
+
+        #sepet {
+            padding-top: 48px;
+            color: maroon;
+            font-weight:bold
+        }
+
+        #nav {
+            min-height: 450px;
+            background-color: lightblue;
+        }
+
+        #footer {
+            height: 30px;
+            background-color: lightblue;
+            color: maroon;
+            text-align: center;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <div id="header" class="row">
+                <div id="logo" class="col-md-2">
+                    <img src="images/tekno-logo-1.png" title="TeknoSatış" alt="TeknoSatış" width="150" />
+                </div>
+                <div id="slogan" class="col-md-7">
+                    <p class="h2 text-danger text-center">Yeni Bir Çağ, Teknolojik Bir Dünya</p>
+                </div>
+                <div id="sepet" class="col-md-3">
+                    <img src="images/sepet.png" width="60" />
+                    (<%if (Session["toplamadet"] != null){%><%=Session["toplamadet"].ToString() + " / " %><%}else{ %><%= "sepet boş"%><%} if (Session["toplamtutar"] != null)
+{%><%= string.Format("{0:C}", Session["toplamtutar"]) %><%} %>)</div>
+            </div>
+            <div id="main" class="row">
+                <div id="nav" class="col-md-2">
+                    <asp:Menu ID="mnuMarkalar" runat="server" BackColor="#FFFBD6" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="medium" ForeColor="#990000" StaticSubMenuIndent="10px" OnMenuItemClick="mnuMarkalar_MenuItemClick">
+                        <DynamicHoverStyle BackColor="#990000" ForeColor="White" />
+                        <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                        <DynamicMenuStyle BackColor="#FFFBD6" />
+                        <DynamicSelectedStyle BackColor="#FFCC66" />
+                        <StaticHoverStyle BackColor="#990000" ForeColor="White" />
+                        <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                        <StaticSelectedStyle BackColor="#FFCC66" />
+                    </asp:Menu>
+                </div>
+                <div id="content" class="col-md-10">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="footer" class="row">
+                &copy <strong>Copyright Yazılım 720694 - <%: DateTime.Now.ToShortDateString() %></strong>
+            </div>
+        </div>
+    </form>
+    <script src="Content/js/bootstrap.min.js"></script>
+</body>
+</html>
